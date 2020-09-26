@@ -12,6 +12,6 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./decorators"), exports);
 __exportStar(require("./ioc.config"), exports);
-__exportStar(require("./nfcore"), exports);
+__exportStar(require("./nf-core"), exports);
 __exportStar(require("./constants"), exports);
 __exportStar(require("inversify"), exports);
