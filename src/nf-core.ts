@@ -47,7 +47,7 @@ export const NfCore = class {
                 const routeController = chalk.blue(controller.constructor.name);
                 const routeHandler = chalk.red(route.controllerMethod);
 
-                console.log(`${routeName} -> ${routePath} -> ${routeController}<${routeHandler}>`);
+                console.log(`${routeName} -> ${routePath} -> ${routeController}.${routeHandler}`);
             }
         });
     }

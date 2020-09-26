@@ -5,3 +5,7 @@ export enum Http {
     DELETE = "delete",
     PATCH = "patch",
 }
+
+export const Symbols = {
+    axios: Symbol.for("axios")
+}

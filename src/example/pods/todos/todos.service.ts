@@ -1,5 +1,5 @@
 import {AxiosInstance} from "axios";
-import {inject, register} from "../../../";
+import {inject, register, Symbols} from "../../../";
 
 export interface Todo {
     userId: number;
@@ -18,7 +18,7 @@ export const TodoServiceSymbol = Symbol.for("TodoService");
 
 @register(TodoServiceSymbol)
 export class TodoServiceImpl implements TodoService {
-    constructor(@inject("Axios") private axios: AxiosInstance,) {
+    constructor(@inject(Symbols.axios) private axios: AxiosInstance,) {
     }
 
     async findAll(): Promise<Todo[]> {
