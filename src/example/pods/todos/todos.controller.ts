@@ -29,7 +29,7 @@ export class TodoControllerImpl implements TodoController {
     }
 
     @route(Http.POST, "webhook")
-    async webhook(request, response): Promise<void> {
+    webhook(request, response): void {
         console.log(request.body);
         response.status(200).send({});
     }
