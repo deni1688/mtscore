@@ -1,4 +1,4 @@
-export function authMiddleware(apiKey: string) {
+export function Auth(apiKey: string) {
     return function(req, res, next) {
         const authorization = req.headers["authorization"] || "";
         if (authorization !== apiKey) {

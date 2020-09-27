@@ -1,6 +1,6 @@
 import {controller, route, inject, Http} from "../../../";
 import {TodoService, TodoServiceLabel} from "./todos.service";
-import {authMiddleware} from "./auth.middleware";
+import {Auth} from "./auth.middleware";
 import {Webhook} from "./webhook.middleware";
 
 export interface TodoController {
@@ -9,7 +9,7 @@ export interface TodoController {
     getById(req: any, res: any): Promise<void>;
 }
 
-@controller("todos", authMiddleware(process.env.API_KEY))
+@controller("todos", Auth(process.env.API_KEY))
 export class TodoControllerImpl implements TodoController {
     constructor(@inject(TodoServiceLabel) private service: TodoService) {
     }
