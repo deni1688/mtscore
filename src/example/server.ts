@@ -1,12 +1,17 @@
 import * as express from 'express';
 import * as morgan from 'morgan';
+import {NFCore} from "../";
 
-import {NfCore} from "../";
-
+// This should always com before the NFCore.init
 import "./pods";
 
-export const app: express.Application = express();
+const app: express.Application = express();
 
-NfCore.init(app, [morgan('dev')]);
+NFCore.init(
+    app,
+    express.json(),
+    express.urlencoded({extended: true}),
+    morgan("combined")
+);
 
-app.listen(3000, () => console.log('server started at http://localhost:3000'));
+app.listen(3000, () => console.log("server started at http://localhost:3000"));
