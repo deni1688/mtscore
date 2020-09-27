@@ -19,7 +19,7 @@ export const NFCore = class {
 
     static init(app: Application, ...middleware: Function[]) {
         NFCore.initAppMiddleware(app, ...middleware);
-        NFCore.bindRoutesToController(app);
+        NFCore.bindRoutesToControllers(app);
     }
 
     static registerRoute(route: Route) {
@@ -38,7 +38,7 @@ export const NFCore = class {
         middleware.forEach((m: Function) => app.use(m));
     }
 
-    private static bindRoutesToController(app) {
+    private static bindRoutesToControllers(app) {
         NFCore.routes.forEach((route: Route) => {
             const controller = container.get(route.controllerClass);
             const controllerClassName = controller.constructor.name;
