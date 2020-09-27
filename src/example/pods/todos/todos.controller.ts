@@ -11,19 +11,19 @@ export interface TodoController {
 
 @controller("todos", Auth(process.env.API_KEY))
 export class TodoControllerImpl implements TodoController {
-    constructor(@inject(TodoServiceLabel) private service: TodoService) {
+    constructor(@inject(TodoServiceLabel) private todoService: TodoService) {
     }
 
     @route(Http.GET, "/", Webhook)
     async getAll(request, response): Promise<void> {
-        const todos = await this.service.findAll();
+        const todos = await this.todoService.findAll();
 
         response.status(200).send(todos)
     }
 
     @route(Http.GET, ":id")
     async getById(request, response): Promise<void> {
-        const todo = await this.service.findById(request.params.id);
+        const todo = await this.todoService.findById(request.params.id);
 
         response.status(200).send(todo)
     }
