@@ -1,9 +1,15 @@
 import * as express from 'express';
 import * as morgan from 'morgan';
-import {NFCore} from "../";
+import {container, NFCore} from "../";
+import {config} from "./config";
 
-// This should always come before the NFCore.init
+/*
+ * Import your pods and declare additional dependencies
+ * before you call the NFCore.init method
+ */
 import "./pods";
+
+container.bind("config").toConstantValue(config);
 
 const app: express.Application = express();
 

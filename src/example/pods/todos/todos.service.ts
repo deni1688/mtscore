@@ -17,16 +17,16 @@ export const TodoServiceLabel = Symbol.for("TodoService")
 
 @register(TodoServiceLabel)
 export class TodoServiceImpl implements TodoService {
-    constructor(@inject(Labels.axios) private axios: AxiosInstance) {
+    constructor(@inject(Labels.axios) private axios: AxiosInstance, @inject("config") private config) {
     }
 
     async findAll(): Promise<Todo[]> {
-        const {data} = await this.axios("https://jsonplaceholder.typicode.com/todos");
+        const {data} = await this.axios(this.config.todoServiceUrl);
         return data;
     }
 
     async findById(id: string): Promise<Todo> {
-        const {data} = await this.axios("https://jsonplaceholder.typicode.com/todos/" + id);
+        const {data} = await this.axios(`${this.config.todoServiceUrl}/${id}`);
         return data;
     }
 }
