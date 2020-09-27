@@ -2,7 +2,7 @@ import * as express from 'express';
 import * as morgan from 'morgan';
 import {NFCore} from "../";
 
-// This should always com before the NFCore.init
+// This should always come before the NFCore.init
 import "./pods";
 
 const app: express.Application = express();
