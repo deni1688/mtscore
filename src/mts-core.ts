@@ -12,7 +12,7 @@ export interface Route {
     middleware: Function[];
 }
 
-class _NFCore {
+class _MTSCore {
     private routes: Map<string, Route> = new Map<string, Route>();
     private prefixes: Map<string, string> = new Map<string, string>();
     private controllerMiddleware: Map<string, Function[]> = new Map<string, Function[]>();
@@ -65,4 +65,4 @@ class _NFCore {
     }
 }
 
-export const NFCore = new _NFCore();
+export const MTSCore = new _MTSCore();

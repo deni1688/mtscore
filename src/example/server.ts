@@ -1,19 +1,19 @@
 import * as express from 'express';
 import * as morgan from 'morgan';
-import {container, NFCore} from "../";
+import {container, MTSCore} from "../";
 import {config} from "./config";
 
 /*
- * Import your pods and declare additional dependencies
- * before you call the NFCore.init method
+ * Import your api and declare additional dependencies
+ * before you call the MTSCore.init method
  */
-import "./pods";
+import "./api";
 
 container.bind("config").toConstantValue(config);
 
 const app: express.Application = express();
 
-NFCore.init(
+MTSCore.init(
     app,
     express.json(),
     express.urlencoded({extended: true}),

@@ -18,7 +18,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.decorate = exports.injectable = exports.inject = void 0;
 __exportStar(require("./decorators"), exports);
 __exportStar(require("./ioc.config"), exports);
-__exportStar(require("./nf-core"), exports);
+__exportStar(require("./mts-core"), exports);
 __exportStar(require("./constants"), exports);
 var inversify_1 = require("inversify");
 Object.defineProperty(exports, "inject", { enumerable: true, get: function () { return inversify_1.inject; } });

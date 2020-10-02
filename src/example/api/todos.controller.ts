@@ -1,7 +1,6 @@
-import {controller, route, inject, Http} from "../../../";
-import {TodoService, TodoServiceLabel} from "./todos.service";
-import {Auth} from "./auth.middleware";
-import {Webhook} from "./webhook.middleware";
+import {controller, route, inject, Http} from "../../index";
+import {TodoService, TodoServiceLabel} from "../services";
+import {Auth, Webhook} from "./middleware";
 
 export interface TodoController {
     getAll(req: any, res: any): Promise<void>;

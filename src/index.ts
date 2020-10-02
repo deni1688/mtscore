@@ -6,7 +6,7 @@
 
 export * from "./decorators";
 export * from "./ioc.config"
-export * from "./nf-core";
+export * from "./mts-core";
 export * from "./constants";
 
 export {inject, injectable, decorate} from "inversify";

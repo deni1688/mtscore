@@ -1,4 +1,4 @@
-import {inject, register, Labels, AxiosInstance} from "../../../";
+import {inject, register, Labels, AxiosInstance} from "../../";
 
 export interface Todo {
     userId: number;

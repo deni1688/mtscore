@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.NFCore = void 0;
+exports.MTSCore = void 0;
 const ioc_config_1 = require("./ioc.config");
 const chalk = require("chalk");
-class _NFCore {
+class _MTSCore {
     constructor() {
         this.routes = new Map();
         this.prefixes = new Map();
@@ -43,4 +43,4 @@ class _NFCore {
         });
     }
 }
-exports.NFCore = new _NFCore();
+exports.MTSCore = new _MTSCore();

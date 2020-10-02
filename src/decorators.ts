@@ -1,6 +1,6 @@
 import {injectable, decorate} from "inversify";
 import {container} from "./ioc.config";
-import {HttpMethod, NFCore} from "./nf-core";
+import {HttpMethod, MTSCore} from "./mts-core";
 
 export function controller(prefix?: string, ...middleware: Function[]) {
     return (t: any) => {
@@ -8,10 +8,10 @@ export function controller(prefix?: string, ...middleware: Function[]) {
         container.bind(Symbol.for(t.name)).to(t);
 
         if (prefix) {
-            NFCore.registerPrefix(t.name, prefix)
+            MTSCore.registerPrefix(t.name, prefix)
         }
 
-        NFCore.registerControllerMiddleware(t.name, ...middleware);
+        MTSCore.registerControllerMiddleware(t.name, ...middleware);
     }
 }
 
@@ -23,7 +23,7 @@ export function register(id: symbol) {
 }
 
 export function route(httpMethod: HttpMethod, path?: string, ...middleware: Function[]) {
-    return (controllerClass: any, controllerMethod: string) => NFCore.registerRoute({
+    return (controllerClass: any, controllerMethod: string) => MTSCore.registerRoute({
         path: path ? path[0] === "/" ? path : `/${path}` : "/",
         method: httpMethod,
         controllerClass: Symbol.for(controllerClass.constructor.name),
