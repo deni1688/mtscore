@@ -1,4 +1,4 @@
-import {Application} from "express";
+import {Application, Handler} from "express";
 import {container} from "./ioc.config";
 import * as chalk from "chalk";
 
@@ -9,15 +9,15 @@ export interface Route {
     method: HttpMethod;
     controllerClass: symbol
     controllerMethod: string;
-    middleware: Function[];
+    middleware: Handler[];
 }
 
 class _MTSCore {
     private routes: Map<string, Route> = new Map<string, Route>();
     private prefixes: Map<string, string> = new Map<string, string>();
-    private controllerMiddleware: Map<string, Function[]> = new Map<string, Function[]>();
+    private controllerMiddleware: Map<string, Function[]> = new Map<string, Handler[]>();
 
-    init(app: Application, ...middleware: Function[]) {
+    init(app: Application, ...middleware: Handler[]) {
         this.initAppMiddleware(app, ...middleware);
         this.bindRoutesToControllers(app);
     }
@@ -30,11 +30,11 @@ class _MTSCore {
         this.prefixes.set(controllerName, prefix);
     }
 
-    registerControllerMiddleware(controllerName: string, ...middleware: Function[]) {
+    registerControllerMiddleware(controllerName: string, ...middleware: Handler[]) {
         this.controllerMiddleware.set(controllerName, [...middleware]);
     }
 
-    private initAppMiddleware(app, ...middleware: Function[]) {
+    private initAppMiddleware(app, ...middleware: Handler[]) {
         middleware.forEach((m: Function) => app.use(m));
     }
 
@@ -54,12 +54,12 @@ class _MTSCore {
             );
 
             if (process.env.MTS_LOG_REGISTERED) {
-                const routeName = chalk.green(route.method.toLocaleUpperCase());
+                const routeMethod = chalk.green(route.method.toLocaleUpperCase());
                 const routePath = chalk.yellow(route.path);
                 const routeController = chalk.blue(controllerClassName);
                 const routeHandler = chalk.red(route.controllerMethod);
 
-                console.log(`${routeName} -> ${routePath} -> ${routeController}.${routeHandler}`);
+                console.log(`${routeMethod} -> ${routePath} -> ${routeController}.${routeHandler}`);
             }
         });
     }

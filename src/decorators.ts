@@ -1,8 +1,9 @@
 import {injectable, decorate} from "inversify";
 import {container} from "./ioc.config";
 import {HttpMethod, MTSCore} from "./mts-core";
+import {Handler} from "express";
 
-export function controller(prefix?: string, ...middleware: Function[]) {
+export function controller(prefix?: string, ...middleware: Handler[]) {
     return (t: any) => {
         decorate(injectable(), t);
         container.bind(Symbol.for(t.name)).to(t);
@@ -22,7 +23,7 @@ export function register(id: symbol) {
     }
 }
 
-export function route(httpMethod: HttpMethod, path?: string, ...middleware: Function[]) {
+export function route(httpMethod: HttpMethod, path?: string, ...middleware: Handler[]) {
     return (controllerClass: any, controllerMethod: string) => MTSCore.registerRoute({
         path: path ? path[0] === "/" ? path : `/${path}` : "/",
         method: httpMethod,

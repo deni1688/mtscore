@@ -7,7 +7,7 @@ import {config} from "./config";
  * Import your pods and declare additional dependencies
  * before you call the NFCore.init method
  */
-import "./pods";
+import "./api";
 
 container.bind("config").toConstantValue(config);
 

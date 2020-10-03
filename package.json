@@ -5,7 +5,7 @@
   "main": "dist",
   "scripts": {
     "build": "rm -rf dist && tsc",
-    "start:example": "MTS_LOG_REGISTERED=1 ts-node src/example/server.ts"
+    "start:example": "MTS_LOG_REGISTERED=1 nodemon --exec ts-node src/example/server.ts"
   },
   "dependencies": {
     "axios": "^0.20.0",
@@ -19,6 +19,7 @@
   "devDependencies": {
     "@types/express": "^4.17.8",
     "@types/node": "^14.11.2",
+    "nodemon": "^2.0.4",
     "ts-node": "^9.0.0"
   }
 }
