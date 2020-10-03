@@ -23,7 +23,8 @@ class _MTSCore {
     }
 
     registerRoute(route: Route) {
-        this.routes.set(route.path, route);
+        const routeKey = route.path + route.controllerMethod;
+        this.routes.set(routeKey, route);
     }
 
     registerPrefix(controllerName: string, prefix: string) {
@@ -54,8 +55,8 @@ class _MTSCore {
             );
 
             if (process.env.MTS_LOG_REGISTERED) {
-                const routeMethod = chalk.green(route.method.toLocaleUpperCase());
                 const routePath = chalk.yellow(route.path);
+                const routeMethod = chalk.magenta(route.method.toLocaleUpperCase());
                 const routeController = chalk.blue(controllerClassName);
                 const routeHandler = chalk.red(route.controllerMethod);
 

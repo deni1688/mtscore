@@ -14,7 +14,8 @@ class _MTSCore {
         this.bindRoutesToControllers(app);
     }
     registerRoute(route) {
-        this.routes.set(route.path, route);
+        const routeKey = route.path + route.controllerMethod;
+        this.routes.set(routeKey, route);
     }
     registerPrefix(controllerName, prefix) {
         this.prefixes.set(controllerName, prefix);
@@ -34,8 +35,8 @@ class _MTSCore {
             route.path = prefix ? `/${prefix}${route.path}` : route.path;
             app[route.method](route.path, ...controllerMiddleware, ...route.middleware, controller[route.controllerMethod].bind(controller));
             if (process.env.MTS_LOG_REGISTERED) {
-                const routeMethod = chalk.green(route.method.toLocaleUpperCase());
                 const routePath = chalk.yellow(route.path);
+                const routeMethod = chalk.magenta(route.method.toLocaleUpperCase());
                 const routeController = chalk.blue(controllerClassName);
                 const routeHandler = chalk.red(route.controllerMethod);
                 console.log(`${routeMethod} -> ${routePath} -> ${routeController}.${routeHandler}`);
