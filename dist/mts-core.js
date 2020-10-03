@@ -34,11 +34,11 @@ class _MTSCore {
             route.path = prefix ? `/${prefix}${route.path}` : route.path;
             app[route.method](route.path, ...controllerMiddleware, ...route.middleware, controller[route.controllerMethod].bind(controller));
             if (process.env.MTS_LOG_REGISTERED) {
-                const routeName = chalk.green(route.method.toLocaleUpperCase());
+                const routeMethod = chalk.green(route.method.toLocaleUpperCase());
                 const routePath = chalk.yellow(route.path);
                 const routeController = chalk.blue(controllerClassName);
                 const routeHandler = chalk.red(route.controllerMethod);
-                console.log(`${routeName} -> ${routePath} -> ${routeController}.${routeHandler}`);
+                console.log(`${routeMethod} -> ${routePath} -> ${routeController}.${routeHandler}`);
             }
         });
     }
