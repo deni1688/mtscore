@@ -5,7 +5,7 @@
   "main": "dist",
   "scripts": {
     "build": "rm -rf dist && tsc",
-    "start:example": "NF_LOG_REGISTERED=1 ts-node src/example/server.ts"
+    "start:example": "MTS_LOG_REGISTERED=1 ts-node src/example/server.ts"
   },
   "dependencies": {
     "axios": "^0.20.0",

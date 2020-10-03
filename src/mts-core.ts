@@ -53,7 +53,7 @@ class _MTSCore {
                 controller[route.controllerMethod].bind(controller)
             );
 
-            if (process.env.NF_LOG_REGISTERED) {
+            if (process.env.MTS_LOG_REGISTERED) {
                 const routeName = chalk.green(route.method.toLocaleUpperCase());
                 const routePath = chalk.yellow(route.path);
                 const routeController = chalk.blue(controllerClassName);

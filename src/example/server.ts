@@ -4,10 +4,10 @@ import {container, MTSCore} from "../";
 import {config} from "./config";
 
 /*
- * Import your api and declare additional dependencies
- * before you call the MTSCore.init method
+ * Import your pods and declare additional dependencies
+ * before you call the NFCore.init method
  */
-import "./api";
+import "./pods";
 
 container.bind("config").toConstantValue(config);
 
