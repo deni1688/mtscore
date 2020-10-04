@@ -19,8 +19,8 @@ class _MTSCore {
         this.controllerMiddleware = new Map();
     }
     init(app, ...middleware) {
-        this.initAppMiddleware(app, ...middleware);
         this.bindRoutesToControllers(app);
+        this.initAppMiddleware(app, ...middleware);
     }
     registerRoute(route) {
         const routeKey = route.path + route.controllerMethod;

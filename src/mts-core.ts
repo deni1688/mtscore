@@ -18,8 +18,8 @@ class _MTSCore {
     private controllerMiddleware: Map<string, Function[]> = new Map<string, Handler[]>();
 
     init(app: Application, ...middleware: Handler[]) {
-        this.initAppMiddleware(app, ...middleware);
         this.bindRoutesToControllers(app);
+        this.initAppMiddleware(app, ...middleware);
     }
 
     registerRoute(route: Route) {
