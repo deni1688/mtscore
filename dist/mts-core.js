@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MTSCore = void 0;
 const ioc_config_1 = require("./ioc.config");
@@ -23,6 +32,16 @@ class _MTSCore {
     registerControllerMiddleware(controllerName, ...middleware) {
         this.controllerMiddleware.set(controllerName, [...middleware]);
     }
+    asyncErrorHandler(fn) {
+        return (...args) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                yield fn(...args);
+            }
+            catch (e) {
+                args[2](e);
+            }
+        });
+    }
     initAppMiddleware(app, ...middleware) {
         middleware.forEach((m) => app.use(m));
     }
@@ -33,7 +52,7 @@ class _MTSCore {
             const prefix = this.prefixes.get(controllerClassName);
             const controllerMiddleware = this.controllerMiddleware.get(controllerClassName);
             route.path = prefix ? `/${prefix}${route.path}` : route.path;
-            app[route.method](route.path, ...controllerMiddleware, ...route.middleware, controller[route.controllerMethod].bind(controller));
+            app[route.method](route.path, ...controllerMiddleware, ...route.middleware, this.asyncErrorHandler(controller[route.controllerMethod].bind(controller)));
             if (process.env.MTS_LOG_REGISTERED) {
                 const routePath = chalk.yellow(route.path);
                 const routeMethod = chalk.magenta(route.method.toLocaleUpperCase());

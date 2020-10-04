@@ -35,6 +35,16 @@ class _MTSCore {
         this.controllerMiddleware.set(controllerName, [...middleware]);
     }
 
+    private asyncErrorHandler(fn) {
+        return async (...args) => {
+            try {
+                await fn(...args);
+            } catch (e) {
+                args[2](e);
+            }
+        };
+    }
+
     private initAppMiddleware(app, ...middleware: Handler[]) {
         middleware.forEach((m: Function) => app.use(m));
     }
@@ -51,7 +61,7 @@ class _MTSCore {
                 route.path,
                 ...controllerMiddleware,
                 ...route.middleware,
-                controller[route.controllerMethod].bind(controller)
+                this.asyncErrorHandler(controller[route.controllerMethod].bind(controller))
             );
 
             if (process.env.MTS_LOG_REGISTERED) {
