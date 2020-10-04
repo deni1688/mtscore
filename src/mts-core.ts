@@ -13,6 +13,7 @@ export interface Route {
 }
 
 class _MTSCore {
+    private app: Application;
     private routes: Map<string, Route> = new Map<string, Route>();
     private prefixes: Map<string, string> = new Map<string, string>();
     private controllerMiddleware: Map<string, Function[]> = new Map<string, Handler[]>();
@@ -20,6 +21,13 @@ class _MTSCore {
     init(app: Application, ...middleware: Handler[]) {
         this.bindRoutesToControllers(app);
         this.initAppMiddleware(app, ...middleware);
+        this.app = app;
+
+        return this;
+    }
+
+    start(port, callback) {
+        this.app.listen(port, callback);
     }
 
     registerRoute(route: Route) {

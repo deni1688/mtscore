@@ -21,6 +21,11 @@ class _MTSCore {
     init(app, ...middleware) {
         this.bindRoutesToControllers(app);
         this.initAppMiddleware(app, ...middleware);
+        this.app = app;
+        return this;
+    }
+    start(port, callback) {
+        this.app.listen(port, callback);
     }
     registerRoute(route) {
         const routeKey = route.path + route.controllerMethod;
