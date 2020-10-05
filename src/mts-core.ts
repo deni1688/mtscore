@@ -18,7 +18,7 @@ class MTSCore {
     private prefixes: Map<string, string> = new Map<string, string>();
     private controllerMiddleware: Map<string, Function[]> = new Map<string, Handler[]>();
 
-    initRoutes(app) {
+    init(app) {
         this.routes.forEach((route: Route) => {
             const controller = container.get(route.controllerClass);
             const controllerClassName = controller.constructor.name;

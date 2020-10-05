@@ -18,7 +18,7 @@ class MTSCore {
         this.prefixes = new Map();
         this.controllerMiddleware = new Map();
     }
-    initRoutes(app) {
+    init(app) {
         this.routes.forEach((route) => {
             const controller = ioc_config_1.container.get(route.controllerClass);
             const controllerClassName = controller.constructor.name;
