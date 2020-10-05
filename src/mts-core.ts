@@ -12,52 +12,13 @@ export interface Route {
     middleware: Handler[];
 }
 
-class _MTSCore {
+class MTSCore {
     private app: Application;
     private routes: Map<string, Route> = new Map<string, Route>();
     private prefixes: Map<string, string> = new Map<string, string>();
     private controllerMiddleware: Map<string, Function[]> = new Map<string, Handler[]>();
 
-    init(app: Application, ...middleware: Handler[]) {
-        this.bindRoutesToControllers(app);
-        this.initAppMiddleware(app, ...middleware);
-        this.app = app;
-
-        return this;
-    }
-
-    start(port, callback) {
-        this.app.listen(port, callback);
-    }
-
-    registerRoute(route: Route) {
-        const routeKey = route.path + route.controllerMethod;
-        this.routes.set(routeKey, route);
-    }
-
-    registerPrefix(controllerName: string, prefix: string) {
-        this.prefixes.set(controllerName, prefix);
-    }
-
-    registerControllerMiddleware(controllerName: string, ...middleware: Handler[]) {
-        this.controllerMiddleware.set(controllerName, [...middleware]);
-    }
-
-    private asyncErrorHandler(fn) {
-        return async (...args) => {
-            try {
-                await fn(...args);
-            } catch (e) {
-                args[2](e);
-            }
-        };
-    }
-
-    private initAppMiddleware(app, ...middleware: Handler[]) {
-        middleware.forEach((m: Function) => app.use(m));
-    }
-
-    private bindRoutesToControllers(app) {
+    initRoutes(app) {
         this.routes.forEach((route: Route) => {
             const controller = container.get(route.controllerClass);
             const controllerClassName = controller.constructor.name;
@@ -82,6 +43,29 @@ class _MTSCore {
             }
         });
     }
+
+    registerRoute(route: Route) {
+        const routeKey = route.path + route.controllerMethod;
+        this.routes.set(routeKey, route);
+    }
+
+    registerPrefix(controllerName: string, prefix: string) {
+        this.prefixes.set(controllerName, prefix);
+    }
+
+    registerControllerMiddleware(controllerName: string, ...middleware: Handler[]) {
+        this.controllerMiddleware.set(controllerName, [...middleware]);
+    }
+
+    private asyncErrorHandler(fn) {
+        return async (...args) => {
+            try {
+                await fn(...args);
+            } catch (e) {
+                args[2](e);
+            }
+        };
+    }
 }
 
-export const MTSCore = new _MTSCore();
+export const mtsCore = new MTSCore();

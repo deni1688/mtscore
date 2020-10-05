@@ -1,6 +1,6 @@
 import {injectable, decorate} from "inversify";
 import {container} from "./ioc.config";
-import {HttpMethod, MTSCore} from "./mts-core";
+import {HttpMethod, mtsCore} from "./mts-core";
 import {Handler} from "express";
 
 export function controller(prefix?: string, ...middleware: Handler[]) {
@@ -9,10 +9,10 @@ export function controller(prefix?: string, ...middleware: Handler[]) {
         container.bind(Symbol.for(t.name)).to(t);
 
         if (prefix) {
-            MTSCore.registerPrefix(t.name, prefix)
+            mtsCore.registerPrefix(t.name, prefix)
         }
 
-        MTSCore.registerControllerMiddleware(t.name, ...middleware);
+        mtsCore.registerControllerMiddleware(t.name, ...middleware);
     }
 }
 
@@ -24,7 +24,7 @@ export function register(id: symbol) {
 }
 
 export function route(httpMethod: HttpMethod, path?: string, ...middleware: Handler[]) {
-    return (controllerClass: any, controllerMethod: string) => MTSCore.registerRoute({
+    return (controllerClass: any, controllerMethod: string) => mtsCore.registerRoute({
         path: path ? path[0] === "/" ? path : `/${path}` : "/",
         method: httpMethod,
         controllerClass: Symbol.for(controllerClass.constructor.name),

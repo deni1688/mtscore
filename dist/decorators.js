@@ -9,9 +9,9 @@ function controller(prefix, ...middleware) {
         inversify_1.decorate(inversify_1.injectable(), t);
         ioc_config_1.container.bind(Symbol.for(t.name)).to(t);
         if (prefix) {
-            mts_core_1.MTSCore.registerPrefix(t.name, prefix);
+            mts_core_1.mtsCore.registerPrefix(t.name, prefix);
         }
-        mts_core_1.MTSCore.registerControllerMiddleware(t.name, ...middleware);
+        mts_core_1.mtsCore.registerControllerMiddleware(t.name, ...middleware);
     };
 }
 exports.controller = controller;
@@ -23,7 +23,7 @@ function register(id) {
 }
 exports.register = register;
 function route(httpMethod, path, ...middleware) {
-    return (controllerClass, controllerMethod) => mts_core_1.MTSCore.registerRoute({
+    return (controllerClass, controllerMethod) => mts_core_1.mtsCore.registerRoute({
         path: path ? path[0] === "/" ? path : `/${path}` : "/",
         method: httpMethod,
         controllerClass: Symbol.for(controllerClass.constructor.name),

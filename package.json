@@ -4,8 +4,7 @@
   "license": "MIT",
   "main": "dist",
   "scripts": {
-    "build": "rm -rf dist && tsc",
-    "start:example": "MTS_LOG_REGISTERED=1 nodemon --exec ts-node src/example/server.ts"
+    "build": "rm -rf dist && tsc"
   },
   "dependencies": {
     "axios": "^0.20.0",

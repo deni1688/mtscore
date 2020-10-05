@@ -9,23 +9,31 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MTSCore = void 0;
+exports.mtsCore = void 0;
 const ioc_config_1 = require("./ioc.config");
 const chalk = require("chalk");
-class _MTSCore {
+class MTSCore {
     constructor() {
         this.routes = new Map();
         this.prefixes = new Map();
         this.controllerMiddleware = new Map();
     }
-    init(app, ...middleware) {
-        this.bindRoutesToControllers(app);
-        this.initAppMiddleware(app, ...middleware);
-        this.app = app;
-        return this;
-    }
-    start(port, callback) {
-        this.app.listen(port, callback);
+    initRoutes(app) {
+        this.routes.forEach((route) => {
+            const controller = ioc_config_1.container.get(route.controllerClass);
+            const controllerClassName = controller.constructor.name;
+            const prefix = this.prefixes.get(controllerClassName);
+            const controllerMiddleware = this.controllerMiddleware.get(controllerClassName);
+            route.path = prefix ? `/${prefix}${route.path}` : route.path;
+            app[route.method](route.path, ...controllerMiddleware, ...route.middleware, this.asyncErrorHandler(controller[route.controllerMethod].bind(controller)));
+            if (process.env.MTS_LOG_REGISTERED) {
+                const routePath = chalk.yellow(route.path);
+                const routeMethod = chalk.magenta(route.method.toLocaleUpperCase());
+                const routeController = chalk.blue(controllerClassName);
+                const routeHandler = chalk.red(route.controllerMethod);
+                console.log(`${routeMethod} -> ${routePath} -> ${routeController}.${routeHandler}`);
+            }
+        });
     }
     registerRoute(route) {
         const routeKey = route.path + route.controllerMethod;
@@ -47,25 +55,5 @@ class _MTSCore {
             }
         });
     }
-    initAppMiddleware(app, ...middleware) {
-        middleware.forEach((m) => app.use(m));
-    }
-    bindRoutesToControllers(app) {
-        this.routes.forEach((route) => {
-            const controller = ioc_config_1.container.get(route.controllerClass);
-            const controllerClassName = controller.constructor.name;
-            const prefix = this.prefixes.get(controllerClassName);
-            const controllerMiddleware = this.controllerMiddleware.get(controllerClassName);
-            route.path = prefix ? `/${prefix}${route.path}` : route.path;
-            app[route.method](route.path, ...controllerMiddleware, ...route.middleware, this.asyncErrorHandler(controller[route.controllerMethod].bind(controller)));
-            if (process.env.MTS_LOG_REGISTERED) {
-                const routePath = chalk.yellow(route.path);
-                const routeMethod = chalk.magenta(route.method.toLocaleUpperCase());
-                const routeController = chalk.blue(controllerClassName);
-                const routeHandler = chalk.red(route.controllerMethod);
-                console.log(`${routeMethod} -> ${routePath} -> ${routeController}.${routeHandler}`);
-            }
-        });
-    }
 }
-exports.MTSCore = new _MTSCore();
+exports.mtsCore = new MTSCore();
