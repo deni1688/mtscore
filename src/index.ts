@@ -4,10 +4,11 @@
  * entry point for the framework usage e.g. nf-core
  */
 
-export * from "./decorators";
-export * from "./ioc.config"
-export * from "./mts-core";
-export * from "./constants";
+export * from './decorators';
+export * from './ioc.config';
+export * from './mts-core';
+export * from './constants';
+export * from './interfaces';
 
-export {inject, injectable, decorate} from "inversify";
-export {AxiosInstance} from "axios";
+export {inject, injectable, decorate} from 'inversify';
+export {AxiosInstance} from 'axios';

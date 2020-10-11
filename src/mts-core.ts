@@ -1,22 +1,14 @@
-import {Application, Handler} from "express";
-import {container} from "./ioc.config";
-import * as chalk from "chalk";
+import {Application, Handler} from 'express';
+import {container} from './ioc.config';
+import * as chalk from 'chalk';
+import {MTSCore, Route} from './interfaces';
 
-export type HttpMethod = "get" | "put" | "post" | "delete";
+export type HttpMethod = 'get' | 'put' | 'post' | 'delete';
 
-export interface Route {
-    path: string;
-    method: HttpMethod;
-    controllerClass: symbol
-    controllerMethod: string;
-    middleware: Handler[];
-}
-
-class MTSCore {
-    private app: Application;
-    private routes: Map<string, Route> = new Map<string, Route>();
-    private prefixes: Map<string, string> = new Map<string, string>();
-    private controllerMiddleware: Map<string, Function[]> = new Map<string, Handler[]>();
+export class MTSCoreImpl implements MTSCore {
+    routes: Map<string, Route> = new Map<string, Route>();
+    prefixes: Map<string, string> = new Map<string, string>();
+    controllerMiddleware: Map<string, Handler[]> = new Map<string, Handler[]>();
 
     init(app) {
         this.routes.forEach((route: Route) => {
@@ -57,7 +49,7 @@ class MTSCore {
         this.controllerMiddleware.set(controllerName, [...middleware]);
     }
 
-    private asyncErrorHandler(fn) {
+    asyncErrorHandler(fn) {
         return async (...args) => {
             try {
                 await fn(...args);
@@ -68,4 +60,4 @@ class MTSCore {
     }
 }
 
-export const mtsCore = new MTSCore();
+export const mtsCore: MTSCore = new MTSCoreImpl();

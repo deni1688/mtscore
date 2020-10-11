@@ -10,5 +10,6 @@ var Http;
     Http["PATCH"] = "patch";
 })(Http = exports.Http || (exports.Http = {}));
 exports.Labels = {
-    axios: Symbol.for("axios")
+    axios: Symbol.for('axios')
 };
+//# sourceMappingURL=constants.js.map

@@ -15,16 +15,16 @@ function controller(prefix, ...middleware) {
     };
 }
 exports.controller = controller;
-function register(id) {
+function register(key) {
     return (t) => {
         inversify_1.decorate(inversify_1.injectable(), t);
-        ioc_config_1.container.bind(id).to(t);
+        ioc_config_1.container.bind(key).to(t);
     };
 }
 exports.register = register;
 function route(httpMethod, path, ...middleware) {
     return (controllerClass, controllerMethod) => mts_core_1.mtsCore.registerRoute({
-        path: path ? path[0] === "/" ? path : `/${path}` : "/",
+        path: path ? path[0] === '/' ? path : `/${path}` : '/',
         method: httpMethod,
         controllerClass: Symbol.for(controllerClass.constructor.name),
         controllerMethod: controllerMethod,
@@ -32,3 +32,4 @@ function route(httpMethod, path, ...middleware) {
     });
 }
 exports.route = route;
+//# sourceMappingURL=decorators.js.map

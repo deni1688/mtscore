@@ -9,10 +9,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.mtsCore = void 0;
+exports.mtsCore = exports.MTSCoreImpl = void 0;
 const ioc_config_1 = require("./ioc.config");
 const chalk = require("chalk");
-class MTSCore {
+class MTSCoreImpl {
     constructor() {
         this.routes = new Map();
         this.prefixes = new Map();
@@ -56,4 +56,6 @@ class MTSCore {
         });
     }
 }
-exports.mtsCore = new MTSCore();
+exports.MTSCoreImpl = MTSCoreImpl;
+exports.mtsCore = new MTSCoreImpl();
+//# sourceMappingURL=mts-core.js.map
