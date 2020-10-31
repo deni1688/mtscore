@@ -1,5 +1,5 @@
-import {injectable, decorate, inject} from 'inversify';
-import {container} from './ioc.config';
+import {decorate, injectable} from 'inversify';
+import {container} from './ioc-config';
 import {HttpMethod, mtsCore} from './mts-core';
 import {Handler} from 'express';
 

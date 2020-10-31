@@ -4,7 +4,7 @@ import {HttpMethod} from './mts-core';
 export * from './constants';
 export * from './decorators';
 export {mtsCore} from './mts-core';
-export {container} from './ioc.config';
+export {container} from './ioc-config';
 export {inject, injectable, decorate} from 'inversify';
 export {AxiosInstance} from 'axios';
 

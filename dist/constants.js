@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Labels = exports.Http = void 0;
+exports.TYPES = exports.Http = void 0;
 var Http;
 (function (Http) {
     Http["GET"] = "get";
@@ -9,6 +9,6 @@ var Http;
     Http["DELETE"] = "delete";
     Http["PATCH"] = "patch";
 })(Http = exports.Http || (exports.Http = {}));
-exports.Labels = {
+exports.TYPES = {
     axios: Symbol.for('axios')
 };

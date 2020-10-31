@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.route = exports.register = exports.controller = void 0;
 const inversify_1 = require("inversify");
-const ioc_config_1 = require("./ioc.config");
+const ioc_config_1 = require("./ioc-config");
 const mts_core_1 = require("./mts-core");
 function controller(prefix, ...middleware) {
     return (t) => {

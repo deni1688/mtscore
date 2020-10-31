@@ -6,6 +6,6 @@ export enum Http {
     PATCH = 'patch',
 }
 
-export const Labels = {
+export const TYPES = {
     axios: Symbol.for('axios')
 };

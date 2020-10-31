@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.mtsCore = exports.MTSCoreImpl = void 0;
-const ioc_config_1 = require("./ioc.config");
+const ioc_config_1 = require("./ioc-config");
 const chalk = require("chalk");
 class MTSCoreImpl {
     constructor() {
