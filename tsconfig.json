@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
     "outDir": "dist/",
-    "rootDir": "src/",
-    "target": "es6",
+    "rootDir": "lib/",
+    "target": "es2019",
     "lib": [
-      "es6",
+      "es2019",
       "dom"
     ],
     "types": [
@@ -13,12 +13,10 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "sourceMap": true
+    "emitDecoratorMetadata": true
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts"
+    "lib/"
   ],
   "exclude": [
     "node_modules"

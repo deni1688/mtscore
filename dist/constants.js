@@ -12,4 +12,3 @@ var Http;
 exports.Labels = {
     axios: Symbol.for('axios')
 };
-//# sourceMappingURL=constants.js.map

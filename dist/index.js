@@ -20,9 +20,8 @@ __exportStar(require("./decorators"), exports);
 __exportStar(require("./ioc.config"), exports);
 __exportStar(require("./mts-core"), exports);
 __exportStar(require("./constants"), exports);
-__exportStar(require("./interfaces"), exports);
+__exportStar(require("./index"), exports);
 var inversify_1 = require("inversify");
 Object.defineProperty(exports, "inject", { enumerable: true, get: function () { return inversify_1.inject; } });
 Object.defineProperty(exports, "injectable", { enumerable: true, get: function () { return inversify_1.injectable; } });
 Object.defineProperty(exports, "decorate", { enumerable: true, get: function () { return inversify_1.decorate; } });
-//# sourceMappingURL=index.js.map

@@ -21,3 +21,5 @@ export interface MTSCore {
     asyncErrorHandler(fn): (...args) => Promise<void>;
 }
 
+export const mtsCore: MTSCore;
+

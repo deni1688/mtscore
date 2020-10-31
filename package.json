@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "main": "dist",
+  "typings": "lib/interfaces.d.ts",
   "scripts": {
     "build": "rm -rf dist && tsc"
   },
@@ -21,4 +22,5 @@
     "nodemon": "^2.0.4",
     "ts-node": "^9.0.0"
   }
+
 }
