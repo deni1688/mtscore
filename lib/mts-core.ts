@@ -31,7 +31,7 @@ export class MTSCoreImpl implements MTSCore {
                 const routeController = chalk.blue(controllerClassName);
                 const routeHandler = chalk.red(route.controllerMethod);
 
-                console.log(`${routeMethod} -> ${routePath} -> ${routeController}<${routeHandler}>`);
+                console.log(`${routeMethod} -> ${routePath} -> ${routeController}::${routeHandler}`);
             }
         });
     }
