@@ -20,3 +20,4 @@ export interface MTSCore {
     registerControllerMiddleware(controllerName: string, ...middleware: Handler[]): void;
     asyncErrorHandler(fn): (...args) => Promise<void>;
 }
+

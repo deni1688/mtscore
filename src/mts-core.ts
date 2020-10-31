@@ -1,4 +1,4 @@
-import {Application, Handler} from 'express';
+import {Handler} from 'express';
 import {container} from './ioc.config';
 import * as chalk from 'chalk';
 import {MTSCore, Route} from './interfaces';
