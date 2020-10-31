@@ -22,7 +22,7 @@ class MTSCoreImpl {
                 const routeMethod = chalk.magenta(route.method.toLocaleUpperCase());
                 const routeController = chalk.blue(controllerClassName);
                 const routeHandler = chalk.red(route.controllerMethod);
-                console.log(`${routeMethod} \t-> ${routePath} \t-> ${routeController}::${routeHandler}`);
+                console.log(`${routeMethod} -> ${routePath} -> ${routeController}::${routeHandler}`);
             }
         });
     }
