@@ -1,2 +1,2 @@
 # MTSCore
-A small framework for creating declarative expresss routing and dependency injection. 
+A small framework for creating declarative express routing with built in dependency injection. 
