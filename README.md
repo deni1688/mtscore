@@ -22,6 +22,9 @@ bootstrapHttpServer()
     .then(onServerStartSuccess)
     .catch(console.error);
 
+```
+
+```ts
 // Some Controller
 import {Request, Response} from 'express';
 import {container, controller, Http, inject, route} from 'mts-core';
@@ -43,6 +46,9 @@ export class SomeController {
     }
 }
 
+```
+
+```ts
 // Some Service
 import {inject, register} from 'mts-core';
 import {SomerRepo, Something, SomeService} from './interfaces';
