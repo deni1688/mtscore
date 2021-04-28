@@ -8,7 +8,7 @@ import {mtsCore} from 'mts-core';
 const app = express();
 
 function bootstrapHttpServer() {
-    // ... init other middleware wiht app.use
+    // ... init other middleware with app.use
     // ... inject additional dependencies
     // ...
     mtsCore.init(app);
