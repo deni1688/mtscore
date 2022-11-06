@@ -6,24 +6,20 @@ A small framework for creating declarative express routing with built in depende
 ###  Application main
 
 ```ts
+import express from 'express'
 import {mtsCore} from 'mts-core';
 
-const app = express();
-
-function bootstrapHttpServer() {
+function bootstrapHttpServer(app) {
     // ... init other middleware with app.use
-    // ... inject additional dependencies
+    // ... bind additional dependencies
     // ...
+
     mtsCore.init(app);
 
-    app.listen(config.port);
+    app.listen(config.port, () => console.log(`Server started on :${config.port}`));
 }
 
-const onServerStartSuccess = _ => console.log(`Server started on :${config.port}`);
-
-bootstrapHttpServer()
-    .then(onServerStartSuccess)
-    .catch(console.error);
+bootstrapHttpServer(express())
 
 ```
 
@@ -67,7 +63,7 @@ export class SomeServiceImpl implements SomeService {
     async doSomething(query: unknown): Promise<Something> {
         let result;
 
-        // do some magic to provide a result
+        // do some work to get a result
 
         return result;
     }
