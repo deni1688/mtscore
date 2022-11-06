@@ -9,7 +9,7 @@
     ],
     "types": [
       "reflect-metadata",
-      "node"
+      "node",
     ],
     "module": "commonjs",
     "moduleResolution": "node",
@@ -17,7 +17,8 @@
     "emitDecoratorMetadata": true
   },
   "include": [
-    "lib/"
+    "lib/",
+    "node_modules/@types"
   ],
   "exclude": [
     "node_modules"

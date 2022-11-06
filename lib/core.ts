@@ -1,6 +1,5 @@
 import { Handler } from 'express';
 import { container } from './ioc';
-import chalk from 'chalk';
 import { MTSCore, Route } from './interfaces';
 
 export type HttpMethod = 'get' | 'put' | 'post' | 'delete';
@@ -26,12 +25,12 @@ export class MTSCoreImpl implements MTSCore {
             );
 
             if (process.env.MTS_LOG_REGISTERED) {
-                const routePath = chalk.yellow(route.path);
-                const routeMethod = chalk.magenta(route.method.toLocaleUpperCase());
-                const routeController = chalk.blue(controllerClassName);
-                const routeHandler = chalk.red(route.controllerMethod);
-                const routeControllerMiddleware = chalk.white(controllerMiddleware.map(f => f.name));
-                const routeHandlerMiddleware = chalk.white(route.middleware.map(f => f.name));
+                const routePath = route.path;
+                const routeMethod = route.method.toLocaleUpperCase();
+                const routeController = controllerClassName;
+                const routeHandler = route.controllerMethod;
+                const routeControllerMiddleware = controllerMiddleware.map(f => f.name);
+                const routeHandlerMiddleware = route.middleware.map(f => f.name);
 
                 console.log(`${routeMethod} -> ${routePath} -> ${routeController}[${routeControllerMiddleware}]::${routeHandler}[${routeHandlerMiddleware}]`);
             }
