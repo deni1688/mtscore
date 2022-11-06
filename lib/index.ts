@@ -4,4 +4,6 @@ export * from './ioc';
 export * from './constants';
 export * from './index';
 
-export { inject, injectable, decorate } from 'inversify';
+// Third party
+export * from 'express';
+export * from 'inversify';

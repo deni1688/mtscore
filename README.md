@@ -31,8 +31,7 @@ bootstrapHttpServer()
 
 ```ts
 // Some Controller
-import {Request, Response} from 'express';
-import {container, controller, Http, inject, route} from 'mts-core';
+import {container, controller, Http, inject, route, Request, Response} from 'mts-core';
 
 import {TYPES, SomeService} from '../services';
 import {someRouteSpecificMiddleware, someControllerMiddleware} from './middleware';
