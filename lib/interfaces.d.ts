@@ -1,16 +1,13 @@
 import { Application, Handler } from 'express';
 import { HttpMethod } from './core';
 
-// Third party
-export * from 'inversify';
-export * from 'axios';
-export * from 'express';
-
 // MtsCore
 export * from './constants';
 export * from './decorators';
 export { mtsCore } from './core';
 export { container } from './ioc';
+
+export { Application, Handler, Request, Response } from 'express';
 
 
 
