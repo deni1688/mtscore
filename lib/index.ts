@@ -1,7 +1,7 @@
 export * from './decorators';
-export * from './ioc-config';
-export * from './mts-core';
+export * from './core';
+export * from './ioc';
 export * from './constants';
 export * from './index';
 
-export {inject, injectable, decorate} from 'inversify';
+export { inject, injectable, decorate } from 'inversify';

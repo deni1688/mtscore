@@ -8,7 +8,8 @@
       "dom"
     ],
     "types": [
-      "reflect-metadata"
+      "reflect-metadata",
+      "node"
     ],
     "module": "commonjs",
     "moduleResolution": "node",

@@ -1,12 +1,13 @@
-import {Application, Handler} from 'express';
-import {HttpMethod} from './mts-core';
+import { Application, Handler } from 'express';
+import { HttpMethod } from './core';
 
 export * from './constants';
 export * from './decorators';
-export {mtsCore} from './mts-core';
-export {container} from './ioc-config';
-export {inject, injectable, decorate} from 'inversify';
-export {AxiosInstance} from 'axios';
+export { mtsCore, HttpMethod } from './core';
+export { container } from './ioc';
+export { inject, injectable, decorate } from 'inversify';
+export { AxiosInstance } from 'axios';
+export { Handler, Request, Response, Application } from 'express';
 
 
 export interface Route {
