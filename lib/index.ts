@@ -5,5 +5,5 @@ export * from './constants';
 export * from './index';
 
 // Third party
-export * from 'express';
-export * from 'inversify';
+export { inject, injectable, decorate } from 'inversify';
+export { Application, Request, Response, Handler } from 'express';
