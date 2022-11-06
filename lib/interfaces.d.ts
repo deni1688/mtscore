@@ -4,7 +4,7 @@ import { HttpMethod } from './core';
 // MtsCore
 export * from './constants';
 export * from './decorators';
-export { mtsCore } from './core';
+export { mtsCore, HttpMethod } from './core';
 export { container } from './ioc';
 
 export { Application, Handler, Request, Response } from 'express';
