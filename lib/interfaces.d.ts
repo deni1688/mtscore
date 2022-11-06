@@ -8,8 +8,8 @@ export { mtsCore, HttpMethod } from './core';
 export { container } from './ioc';
 
 export { Application, Handler, Request, Response } from 'express';
-
-
+export { inject, injectable, decorate } from 'inversify';
+export { AxiosInstance } from 'axios';
 
 
 export interface Route {
