@@ -1,4 +1,4 @@
-import { Handler } from 'express';
+import { Application, Handler } from 'express';
 import { container } from './ioc';
 import { MTSCore, Route } from './interfaces';
 
@@ -9,7 +9,7 @@ export class MTSCoreImpl implements MTSCore {
     prefixes: Map<string, string> = new Map<string, string>();
     controllerMiddleware: Map<string, Handler[]> = new Map<string, Handler[]>();
 
-    init(app) {
+    init(app: Application) {
         this.routes.forEach((route: Route) => {
             const controller = container.get(route.controllerClass);
             const controllerClassName = controller.constructor.name;
@@ -50,8 +50,8 @@ export class MTSCoreImpl implements MTSCore {
         this.controllerMiddleware.set(controllerName, [...middleware]);
     }
 
-    asyncErrorHandler(fn) {
-        return async (...args) => {
+    asyncErrorHandler(fn: Handler) {
+        return async (...args: any[]) => {
             try {
                 await fn(...args);
             } catch (e) {
