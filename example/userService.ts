@@ -15,7 +15,7 @@ class PlaceholderUserService implements UserService {
   async fetchUsers(): Promise<User[]> {
     const { data } = await this.axios.get(this.config.getUserServiceUrl());
 
-    return data.map(user => ({
+    return data.map((user: User) => ({
       id: user.id,
       name: user.name,
       username: user.username,
