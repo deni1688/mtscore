@@ -1,0 +1,8 @@
+{
+  "version": "1.0",
+  "name": "MtsCore Example",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mts-core": "file:.."
+  }
+}
