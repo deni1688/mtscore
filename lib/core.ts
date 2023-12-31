@@ -2,7 +2,7 @@ import { Application, Handler } from 'express';
 import { container } from './ioc';
 import { MTSCore, Route } from './interfaces';
 
-export type HttpMethod = 'get' | 'put' | 'post' | 'delete';
+export type HttpMethod = 'get' | 'put' | 'post' | 'patch' | 'delete';
 
 export class MTSCoreImpl implements MTSCore {
   routes: Map<string, Route> = new Map<string, Route>();

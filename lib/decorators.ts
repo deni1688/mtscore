@@ -1,10 +1,12 @@
+import { Handler } from 'express';
 import { decorate, injectable } from 'inversify';
+
 import { container } from './ioc';
 import { HttpMethod, mtsCore } from './core';
-import { Handler } from 'express';
 
 export function controller(prefix?: string, ...middleware: Handler[]) {
     return (t: any) => {
+        console.log(t)
         decorate(injectable(), t);
         container.bind(Symbol.for(t.name)).to(t);
 

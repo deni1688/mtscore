@@ -1,15 +1,15 @@
 import { register, inject, TYPES, AxiosInstance } from "mts-core";
-import { ConfigType, Config } from "./config";
 
-const UserServiceType = Symbol.for("UserService");
+import { Config } from "../config";
+
 type User = { id: number, name: string, username: string, email: string };
 interface UserService { fetchUsers(): Promise<User[]>; }
 
-@register(UserServiceType)
+@register("UserService")
 class PlaceholderUserService implements UserService {
   constructor(
     @inject(TYPES.axios) private axios: AxiosInstance,
-    @inject(ConfigType) private config: Config
+    @inject("Config") private config: Config
   ) { }
 
   async fetchUsers(): Promise<User[]> {
@@ -24,4 +24,4 @@ class PlaceholderUserService implements UserService {
   }
 }
 
-export { UserServiceType, UserService, PlaceholderUserService };
+export { UserService, PlaceholderUserService };

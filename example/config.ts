@@ -1,9 +1,8 @@
 import { register } from "mts-core";
 
-const ConfigType = Symbol.for("Config");
-interface Config { getPort(): number; getUserServiceUrl(): string; };
+interface Config { getPort(): number; getUserServiceUrl(): string; }
 
-@register(ConfigType)
+@register("Config")
 class AppConfig implements Config {
   private port: number = 6543;
   private userServiceUrl: string = 'https://jsonplaceholder.typicode.com/users';
@@ -19,4 +18,4 @@ class AppConfig implements Config {
   }
 }
 
-export { ConfigType, Config, AppConfig };
+export { Config, AppConfig };
